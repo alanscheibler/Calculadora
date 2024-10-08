@@ -1,12 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Calculadora from './src/pages/Calculadora';
+import Historico from './src/pages/Historico';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+      <Stack.Navigator initialRouteName='Calculadora'
+      screenOptions={{
+        headerTitleAlign:'center',
+        headerStyle: {
+          backgroundColor: '#FB930F'
+        },
+        headerTintColor: '#FFF',
+
+        headerTitleStyle: {
+          fontWeight:'bold',
+          textAlign: 'center',
+          flex: 1,
+        }
+      }}
+      >
+          <Stack.Screen name='Calculadora'
+          component={Calculadora}
+      />
+          <Stack.Screen name='Historico'
+          component={Historico}
+      />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
